@@ -1,16 +1,16 @@
 import java.util.Random;
 
-public class MagicBox {
-    protected int[] pieces;
+public class MagicBox<T> {
+    protected T[] pieces;
 
 
     public MagicBox(int size) {
-        this.pieces = new int[size];
+        this.pieces = (T[]) new Object[size];
     }
 
-    public boolean put(int piece) {
+    public boolean put(T piece) {
         for (int i = 0; i < pieces.length; i++) {
-            if (pieces[i] == 0) {
+            if (pieces[i] == null) {
                 pieces[i] = piece;
                 System.out.println("+1 piece in Magic Box!");
                 return true;
@@ -20,9 +20,9 @@ public class MagicBox {
         return false;
     }
 
-    public int pick() {
+    public T pick() {
         for (int i = 0; i < pieces.length; i++) {
-            if (pieces[i] == 0) {
+            if (pieces[i] == null) {
                 throw new RuntimeException("Need more " + (pieces.length - i) + " pieces!");
             }
         }
